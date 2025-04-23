@@ -1,0 +1,21 @@
+<mat-form-field *ngIf="list != null" fxFlex="100" appearance="outline">
+  <mat-label>{{label}}</mat-label>
+  <input [required]="required" placeholder="Selecione..." matInput [formControl]="parentControl"
+    [matAutocomplete]="auto">
+    <mat-icon matSuffix color="primary">{{icon}}</mat-icon>
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+
+    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+      {{option.id}} - {{option.nome}}
+    </mat-option>
+
+  </mat-autocomplete>
+  <mat-error *ngIf="parentControl.hasError('required')">
+    {{label}} é obrigatório
+  </mat-error>
+
+  <mat-error *ngIf="parentControl.hasError('incorrect')">
+    Selecione uma das opções
+  </mat-error>
+
+</mat-form-field>

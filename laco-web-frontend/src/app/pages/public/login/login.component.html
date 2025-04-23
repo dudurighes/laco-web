@@ -1,0 +1,30 @@
+<div class="box">
+  <img class="logo" src="../../../assets/img/logo-rang.svg" alt="logo rangtecnologia">
+  <div class="box-login" fxLayout="column" fxFlex="100">
+    <h1>Entrar</h1>
+    <form #form="ngForm" [formGroup]="formLogin" (submit)="formLogin.valid ? login() : null">
+
+      <app-input-cpf [icon]="'badge'" [parentControl]="formLogin.get('username')"></app-input-cpf>
+
+      <div style="text-align: left;">
+        <app-input-password  [confirmPassword]="false" [parentControl]="formLogin.get('password')">
+        </app-input-password>
+      </div>
+
+      <div class="box-forgot">
+        <a [routerLink]="'../esqueci-a-senha'">Esqueci minha senha</a>
+      </div>
+
+      <ava-snack-bar-message></ava-snack-bar-message>
+      <div *ngIf="load" class="spinner-box_g">
+        <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+      </div>
+
+      <div class="box-buttons">
+        <button [routerLink]="'/registrar'" mat-button color="primary" type="button">Criar conta</button>
+        <button [disabled]="load" mat-flat-button color="primary" type="submit">Entrar</button>
+      </div>
+    </form>
+  </div>
+
+</div>

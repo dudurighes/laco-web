@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline"  fxFlex="100">
+  <mat-label >{{label}}</mat-label>
+  <input autofocus [focusEnable]="focus" matInput mask="000.000.000-00" [formControl]="parentControl" [required]="required">
+  <mat-icon matSuffix color="primary">{{icon}}</mat-icon>
+  <mat-error *ngIf="parentControl.hasError('required')">
+    {{label}} é obrigatório
+  </mat-error>
+  <mat-error *ngIf="parentControl.hasError('cpf') && !parentControl.hasError('required')">
+    {{label}} inválido
+  </mat-error>
+</mat-form-field>

@@ -1,0 +1,20 @@
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 33vw;
+  min-width: 387px;
+}
+
+.text {
+  min-width: auto;
+  margin: 0px 10px;
+}
+
+::ng-deep .mat-mdc-snack-bar-container {
+  .mat-mdc-snackbar-surface {
+    color: white; // Altere para a cor do texto desejada
+    border-radius: 8px; // Exemplo de alteração do border-radius
+    background-color: #c90505 !important;
+  }
+}

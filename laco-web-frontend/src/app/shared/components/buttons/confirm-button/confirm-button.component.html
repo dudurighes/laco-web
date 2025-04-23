@@ -1,0 +1,14 @@
+<button *ngIf="!addButton" mat-raised-button
+class="confirm-button"
+type="submit"
+[disabled]="submitted"
+><mat-icon matSuffix>done</mat-icon>{{label}}</button>
+
+<button *ngIf="addButton" mat-raised-button
+        class="add-button"
+        type="submit"
+        [disabled]="submitted"
+><mat-icon matSuffix>add</mat-icon>{{label}}</button>
+
+
+

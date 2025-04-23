@@ -1,0 +1,47 @@
+<mat-form-field appearance="outline" fxFlex="100">
+  <mat-label>{{ label }}</mat-label>
+  <input *ngIf="!eventBlur" (input)="function()" autofocus [focusEnable]="focus"
+         [style]="styleCustom" [class]="classCustom" [maxlength]="maxlength"
+         [required]="required" matInput mask="{{mask}}" [type]="type"
+         [formControl]="parentControl"/>
+
+  <input *ngIf="eventBlur" (blur)="onBlur()" autofocus [focusEnable]="focus"
+         [style]="styleCustom" [class]="classCustom" [maxlength]="maxlength"
+         [required]="required" matInput mask="{{mask}}" [type]="type"
+         [formControl]="parentControl"/>
+
+  <mat-icon matSuffix *ngIf="icon" color="primary">{{ icon }}</mat-icon>
+
+  <mat-error *ngIf="parentControl.hasError('required')">
+    <div fxLayout="row" fxLayoutGap="5px">
+      <span>{{ label }}</span> <span>é </span> <b>obrigatório</b>
+    </div>
+  </mat-error>
+  <mat-error *ngIf="parentControl.hasError('minlength')">
+    <div fxLayout="row" fxLayoutGap="5px">
+      <span>{{ label }}</span> <b>Inválido</b>
+    </div>
+  </mat-error>
+  <mat-error *ngIf="parentControl.hasError('maxlength')">
+    <div fxLayout="row" fxLayoutGap="5px">
+      <span>{{ label }}</span> <b>Inválido</b>
+    </div>
+  </mat-error>
+  <mat-error *ngIf="parentControl.hasError('email')">
+    <div fxLayout="row" fxLayoutGap="5px">
+      <span>{{ label }}</span> <b>Inválido</b>
+    </div>
+  </mat-error>
+  <mat-error *ngIf="parentControl.hasError('cpf')">
+    <div fxLayout="row" fxLayoutGap="5px">
+      <span>{{ label }}</span> <b>Inválido</b>
+    </div>
+  </mat-error>
+  <mat-error *ngIf="parentControl.hasError('cnpj')">
+    <div fxLayout="row" fxLayoutGap="5px">
+      <span>{{ label }}</span> <b>Inválido</b>
+    </div>
+  </mat-error>
+
+  <mat-hint *ngIf="hint">{{ hint }}</mat-hint>
+</mat-form-field>

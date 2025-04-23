@@ -1,0 +1,109 @@
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav [opened]="isLargeOpen" #navprincipal [mode]="'side'"
+    [class]=" isEmpresa ? 'sidenav-empresa' : 'sidenav'">
+    <mat-toolbar [color]="'primary'" class="mat-elevation-z5">
+      <img src="../../../../assets/img/rang-ava-logo.svg" width="100%"/>
+    </mat-toolbar>
+
+    <mat-list class="mat-lista-base" *ngIf="itemMenuList != null">
+      <a *ngFor="let item of itemMenuList" [routerLink]="item.route" style="text-decoration: none;">
+        <mat-list-item matRipple [class]="'side-menu-item'" [matTooltip]="item.label" matTooltipPosition="right">
+          <mat-icon matListItemIcon [class]="(item.route == rotaActivated ? 'rota-ativa' : '')">{{ item.icon }}</mat-icon>
+        </mat-list-item>
+      </a>
+    </mat-list>
+
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-drawer-container fullscreen>
+      <mat-drawer #drawer [class]="isEmpresa ? 'drawn-empresa' : 'drawn'" mode="side" [opened]="!isLargeOpen">
+        <mat-toolbar [color]="'primary'" class="mat-elevation-z5">
+          <img src="../../../assets/img/rang-ava-logo-full.svg" width="auto" height="20px" />
+        </mat-toolbar>
+
+        <mat-list class="mat-lista-base" *ngIf="itemMenuList != null">
+          <ng-container *ngFor="let item of itemMenuList">
+            <a [routerLink]="item.route" style="text-decoration: none;">
+              <mat-list-item matRipple [class]="'side-menu-item'" [routerLink]="item.route" [matTooltip]="item.label"
+                             matTooltipPosition="right">
+                <mat-icon matListItemIcon [class]="(item.route == rotaActivated ? 'rota-ativa' : '')">
+                  {{ item.icon }}
+                </mat-icon>
+                {{item.subRecursos}}
+                <div matListItemLine>
+                  {{ item.label }}
+                </div>
+              </mat-list-item>
+            </a>
+
+            <!-- Recursivamente renderiza sub-itens, se existirem -->
+            <mat-list class="sub-list" *ngIf="item.subRecursos && item.subRecursos.length > 0">
+              <ng-container *ngFor="let subItem of item.subRecursos">
+                <a [routerLink]="subItem.route" style="text-decoration: none;">
+                  <mat-list-item matRipple [class]="'side-menu-item'" [routerLink]="subItem.route" [matTooltip]="subItem.label"
+                                 matTooltipPosition="right">
+                    <mat-icon matListItemIcon [class]="(subItem.route == rotaActivated ? 'rota-ativa' : '')">
+                      {{ subItem.icon }}
+                    </mat-icon>
+                    <div matListItemLine>
+                      {{ subItem.label }}
+                    </div>
+                  </mat-list-item>
+                </a>
+
+                <!-- Verifica se o subItem possui sub-itens -->
+                <mat-list class="sub-list" *ngIf="subItem.subRecursos && subItem.subRecursos.length > 0">
+                  <ng-container *ngFor="let subSubItem of subItem.subRecursos">
+                    <a [routerLink]="subSubItem.route" style="text-decoration: none;">
+                      <mat-list-item matRipple [class]="'side-menu-item'" [routerLink]="subSubItem.route" [matTooltip]="subSubItem.label"
+                                     matTooltipPosition="right">
+                        <mat-icon matListItemIcon [class]="(subSubItem.route == rotaActivated ? 'rota-ativa' : '')">
+                          {{ subSubItem.icon }}
+                        </mat-icon>
+                        <div matListItemLine>
+                          {{ subSubItem.label }}
+                        </div>
+                      </mat-list-item>
+                    </a>
+                    <!-- Você pode continuar a recursão se precisar de mais níveis de sub-itens -->
+                  </ng-container>
+                </mat-list>
+              </ng-container>
+            </mat-list>
+          </ng-container>
+        </mat-list>
+
+      </mat-drawer>
+      <mat-drawer-content>
+        <app-header-bar [isEmpresa]="isEmpresa" [drawer]="drawer"></app-header-bar>
+
+        <div class="container-content" id="container" (scroll)="handleScroll($event)">
+          <mat-toolbar style="margin-top: 52px" class="toolbar-title">
+            <button (click)="back()" mat-button color="accent">
+              <mat-icon>keyboard_return</mat-icon>
+            </button>
+            <h1>{{ title }}</h1>
+          </mat-toolbar>
+
+          <button *ngIf="windowScrolledLow" (click)="back()" mat-stroked-button color="accent" style="position: absolute;z-index: 99;top: 68px;left: 4px;">
+            <mat-icon>keyboard_return</mat-icon>
+          </button>
+
+          <div class="container" fxLayout="row" fxLayoutAlign="center none">
+            <div fxFlex="95%">
+              <router-outlet *ngIf="itemMenuList != null && itemMenuList.length > 0"></router-outlet>
+            </div>
+          </div>
+        </div>
+
+
+        <div *ngIf="windowScrolled" style="position: fixed;right: 2%; bottom: 2%;height: 40px;width: 40px;z-index: 99;">
+          <button (click)="scrollToTop()" mat-mini-fab color="accent"><mat-icon>arrow_upward</mat-icon></button>
+        </div>
+
+        <ava-snack-bar-message></ava-snack-bar-message>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,30 @@
+<mat-toolbar style="z-index: 2;position: absolute;width: 100%;" class="mat-elevation-z5"   >
+  <button mat-icon-button color="primary" (click)="toogleMenu()">
+    <mat-icon>menu</mat-icon>
+  </button>
+
+  <span fxFlex="1 1 auto"></span>
+
+  <span *ngIf="isEmpresa" style="text-overflow: ellipsis;overflow: hidden;white-space: nowrap;padding: 0 100px;">{{empresaName}}</span>
+
+  <span class="icon-verify" [matTooltip]="'Usuário verificado.'" *ngIf="loginIsAuth"><mat-icon>verified_user</mat-icon></span>
+
+  <button color="primary" mat-stroked-button [matMenuTriggerFor]="menu">
+    <mat-icon>person</mat-icon>
+    {{userName}}</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="meuPerfil()">
+      <mat-icon>manage_accounts</mat-icon>
+      Meu Perfil
+    </button>
+    <button mat-menu-item *ngIf="isEmpresa" (click)="backToHome()">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar para a home
+    </button>
+    <button mat-menu-item (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      Sair
+    </button>
+  </mat-menu>
+</mat-toolbar>
+

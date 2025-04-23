@@ -1,0 +1,23 @@
+<mat-form-field appearance="outline" fxFlex="100" >
+  <mat-label>Outros emails</mat-label>
+  <mat-chip-list [formControl]="parentControl" multiple  #chipList aria-label="emails">
+    <mat-chip *ngFor="let email of emails"
+     [selectable]="selectable"
+     [removable]="removable"
+     (removed)="remove(email)">
+      {{email}}
+
+      <mat-icon matChipRemove>cancel</mat-icon>
+
+    </mat-chip>
+    <input required  type="email"  placeholder="Outros email."
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+
+  <mat-error *ngIf="this.parentControl.hasError('emptyList')">
+    Informe ao menos um email
+  </mat-error>
+</mat-form-field>

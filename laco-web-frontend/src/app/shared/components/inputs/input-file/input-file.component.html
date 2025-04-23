@@ -1,0 +1,32 @@
+<input type="file" style="display: none" multiple
+       (change)="onFileSelected($event)" #fileUpload>
+
+<div class="file-upload">
+  <div fxLayout="column wrap" fxLayoutAlign="start">
+    <h4 style="margin-top: 5px; margin-bottom: 0">Anexos: </h4>
+    <div *ngFor="let arquivo of arquivoList;">
+      <div fxLayout="row" fxFlex="100">
+        <div fxLayoutAlign="start center" fxFlex="70">
+          <button mat-mini-fab color="warn" class="mat-mdc-extra-mini-fab"
+                  style="margin-right: 5px"
+                  (click)="removeFile(arquivo)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+          <div fxLayout="column" fxFlex="100">
+            <div style="font-size: 13px !important; color: #00796b; font-weight: 600;">
+              {{ arquivo.nome }}
+            </div>
+            <div style="font-size: 11px !important; color: gray">
+              {{ arquivo.dataCadastro | date }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <button mat-mini-fab color="primary" type="button" class="upload-btn"
+          (click)="fileUpload.click()">
+    <mat-icon>attach_file</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,31 @@
+<mat-form-field appearance="{{appearance}}" fxFlex="60" *ngIf="!time">
+  <mat-label>{{label}}</mat-label>
+  <input matInput [matDatepicker]="picker" (dateChange)="function()"
+         [formControl]="parentControl" [matDatepickerFilter]="dateFilter">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker>
+    <mat-datepicker-actions>
+      <button mat-button matDatepickerCancel>Cancelar</button>
+      <button mat-raised-button color="accent" matDatepickerApply>Aplicar</button>
+    </mat-datepicker-actions>
+  </mat-datepicker>
+
+  <mat-error *ngIf="parentControl?.hasError('required')">
+    {{label}} é obrigatório
+  </mat-error>
+</mat-form-field>
+
+
+<mat-form-field appearance="{{appearance}}" fxFlex="60" *ngIf="time">
+  <mat-label>{{label}}</mat-label>
+
+    <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" [formControl]="parentControl" >
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <ngx-mat-datetime-picker #picker >
+    </ngx-mat-datetime-picker>
+
+  <mat-error *ngIf="parentControl?.hasError('required')">
+    {{label}} é obrigatório
+  </mat-error>
+
+</mat-form-field>

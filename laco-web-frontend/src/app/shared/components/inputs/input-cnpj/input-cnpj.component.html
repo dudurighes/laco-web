@@ -1,0 +1,11 @@
+<mat-form-field appearance="outline"  fxFlex="100">
+  <mat-label >CNPJ</mat-label>
+  <input autofocus [focusEnable]="focus" matInput mask="00.000.000/0000-00" [formControl]="parentControl" required>
+  <mat-icon matSuffix *ngIf="icon" color="primary">{{icon}}</mat-icon>
+  <mat-error *ngIf="parentControl.hasError('required')">
+    CNPJ é <b>obrigatório</b>
+  </mat-error>
+  <mat-error *ngIf="parentControl.hasError('cnpj') && !parentControl.hasError('required')">
+    CNPJ <b>inválido!</b>
+  </mat-error>
+</mat-form-field>

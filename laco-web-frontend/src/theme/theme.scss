@@ -1,0 +1,82 @@
+@use '@angular/material' as mat;
+
+@import 'material-symbols';
+
+@include mat.core();
+
+$my-primary: mat.m2-define-palette(mat.$m2-teal-palette,700);
+$my-accent: mat.m2-define-palette(mat.$m2-blue-palette, 700);
+$my-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+$my-typography: mat.m2-define-typography-config(
+  $font-family: 'Roboto, sans-serif',
+  $headline-1: mat.m2-define-typography-level(96px, 96px, 300),
+  $headline-2: mat.m2-define-typography-level(60px, 60px, 300),
+  $headline-3: mat.m2-define-typography-level(48px, 48px, 400),
+  $headline-4: mat.m2-define-typography-level(34px, 34px, 400),
+  $headline-5: mat.m2-define-typography-level(24px, 24px, 400),
+  $headline-6: mat.m2-define-typography-level(20px, 20px, 500),
+  $subtitle-1: mat.m2-define-typography-level(16px, 24px, 400),
+  $subtitle-2: mat.m2-define-typography-level(14px, 21px, 500),
+  $body-1: mat.m2-define-typography-level(14px, 23px, 400),
+  $body-2: mat.m2-define-typography-level(14px, 18px, 400),
+  $button: mat.m2-define-typography-level(14px, 16px, 500),
+  $caption: mat.m2-define-typography-level(12px, 16px, 400),
+  $overline: mat.m2-define-typography-level(10px, 15px, 400),
+);
+
+
+
+$my-theme: mat.m2-define-light-theme((
+  color: (
+    primary: $my-primary,
+    accent: $my-accent,
+    warn: $my-warn,
+  ),
+  typography: $my-typography,
+));
+
+// Inclui o tema definido
+@include mat.all-component-themes($my-theme);
+
+@include mat.all-component-densities(-5);
+
+//@include mat.input-density(-4);
+//@include mat.autocomplete-density(-4);
+//@include mat.datepicker-density(-5);
+//@include mat.form-field-density(-4);
+//@include mat.icon-density(-2);
+//@include mat.checkbox-density(-4);
+@include mat.button-density(-2);
+//@include mat.table-density(-3);
+
+// Variáveis de cores para uso no body
+$primary-color: mat.m2-get-color-from-palette($my-primary);
+$primary-lighter-color: mat.m2-get-color-from-palette($my-primary, 200);
+$primary-darker-color: mat.m2-get-color-from-palette($my-primary, 700);
+$text-primary-color: mat.m2-get-color-from-palette($my-primary);
+$text-primary-lighter-color: mat.m2-get-color-from-palette($my-primary, 200);
+$text-primary-darker-color: mat.m2-get-color-from-palette($my-primary, 700);
+
+$secondary-color: mat.m2-get-color-from-palette($my-accent);
+$secondary-lighter-color: mat.m2-get-color-from-palette($my-accent, 200);
+$secondary-darker-color: mat.m2-get-color-from-palette($my-accent, 700);
+$text-secondary-color: mat.m2-get-color-from-palette($my-accent);
+$text-secondary-lighter-color: mat.m2-get-color-from-palette($my-accent, 200);
+$text-secondary-darker-color: mat.m2-get-color-from-palette($my-accent, 700);
+
+body {
+  --primary-color: #{$primary-color};
+  --primary-lighter-color: #{$primary-lighter-color};
+  --primary-darker-color: #{$primary-darker-color};
+  --text-primary-color: #{$text-primary-color};
+  --text-primary-lighter-color: #{$text-primary-lighter-color};
+  --text-primary-darker-color: #{$text-primary-darker-color};
+
+  --secondary-color: #{$secondary-color};
+  --secondary-lighter-color: #{$secondary-lighter-color};
+  --secondary-darker-color: #{$secondary-darker-color};
+  --text-secondary-color: #{$text-secondary-color};
+  --text-secondary-lighter-color: #{$text-secondary-lighter-color};
+  --text-secondary-darker-color: #{$text-secondary-darker-color};
+}

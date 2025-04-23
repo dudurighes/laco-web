@@ -1,0 +1,22 @@
+<mat-form-field appearance="outline" fxFlex="100" >
+  <mat-label>Outros telefones</mat-label>
+  <mat-chip-list [formControl]="parentControl" multiple  #chipList aria-label="Telefones">
+    <mat-chip *ngFor="let phone of phones"
+     [selectable]="selectable"
+     [removable]="removable"
+     (removed)="remove(phone)">
+      {{phone}}
+      <mat-icon matChipRemove>cancel</mat-icon>
+
+    </mat-chip>
+    <input [required]="required" [mask]="'(00)0000-0000||(00)00000-0000'"  placeholder="Adicione um novo telefone."
+      [matChipInputFor]="chipList"
+      [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+      [matChipInputAddOnBlur]="addOnBlur"
+      (matChipInputTokenEnd)="add($event)">
+  </mat-chip-list>
+
+  <mat-error *ngIf="this.parentControl.hasError('emptyList')">
+    Informe ao menos um telefone
+  </mat-error>
+</mat-form-field>
