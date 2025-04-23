@@ -1,0 +1,107 @@
+<form
+  fxLayout="column"
+  [formGroup]="recursoForm"
+  (submit)="recursoForm.valid ? registraRecurso() : null"
+>
+  <mat-card>
+    <mat-card-header>
+      <h3 style="margin-bottom: 5px; margin-top: 0px">Dados do Recurso</h3>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div fxLayout="column" fxFlex="100">
+        <div fxLayout="row" fxLayoutAlign="" fxFlex="100">
+          <div fxLayout="row wrap" fxLayoutAlign="start" fxFlex="50">
+            <app-input
+              [focus]="true"
+              [label]="'Rota'"
+              [parentControl]="recursoForm.get('rota')"
+              [required]="true"
+              [icon]="'route'"
+              fxFlex="70"
+            >
+            </app-input>
+
+            <app-input
+              [label]="'Descrição'"
+              [parentControl]="recursoForm.get('descricao')"
+              [required]="true"
+              [icon]="'edit_note'"
+              fxFlex="70"
+            >
+            </app-input>
+            <!--            <table>-->
+            <!--              <div fxflex="28" *ngFor="let item of roles; let indexOfelement = index">-->
+            <!--                {{ indexOfelement + 1 }} - -->
+            <!--                {{ item }}-->
+
+
+            <!--              </div>-->
+            <!--            </table>-->
+
+            <app-input
+              [label]="'Icone'"
+              [parentControl]="recursoForm.get('icone')"
+              [required]="true"
+              [icon]="'contact_page'"
+              fxFlex="70"
+            >
+            </app-input>
+
+            <app-input
+              [label]="'Uri'"
+              [parentControl]="recursoForm.get('uri')"
+              [required]="true"
+              [icon]="'api'"
+              fxFlex="70"
+            >
+            </app-input>
+            <div fxLayout="row " fxLayoutAlign="space-between" fxFlex="50">
+              <mat-slide-toggle formControlName="exibeMenu">
+                Exibe no menu
+              </mat-slide-toggle>
+
+              <mat-slide-toggle formControlName="favorito">
+                Favorito
+              </mat-slide-toggle>
+            </div>
+
+          </div>
+          <div fxLayout="column" fxFlex="100">
+            <div style="max-height: 30px">
+              <mat-form-field appearance="outline" fxFlex="28">
+                <mat-label>Cargo</mat-label>
+                <mat-select (selectionChange)="addList($event)" formControlName="roles">
+                  <mat-option value="ROLE_ADMIN">Admin</mat-option>
+                  <mat-option value="ROLE_VIGILANCIA">Vigilância</mat-option>
+                  <mat-option value="ROLE_EMPRESA">Empresa</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div fxFlex="100" style="min-height: 150px">
+              <mat-list>
+                <div mat-subheader>Cargos:</div>
+                <mat-list-item *ngFor="let item of roles; let indexOfelement = index">
+                  <mat-icon matListItemIcon [ngStyle]="{'color':'red', 'cursor': 'pointer'}"
+                            (click)="remove(item)">
+                    delete
+                  </mat-icon>
+                  <div matListItemTitle>{{ indexOfelement + 1 }} -
+                    {{ item }}
+                  </div>
+                </mat-list-item>
+              </mat-list>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <div class="panel-buttons">
+    <app-cancel-button
+      (click)="cancel()">
+    </app-cancel-button>
+    <app-confirm-button [submitted]="submitted"></app-confirm-button>
+  </div>
+</form>

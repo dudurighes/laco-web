@@ -1,18 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from './core/authentication/auth.guard';
 
 const routes: Routes = [
-
-
-  { path: '', loadChildren: () => import('./pages/public/public.module').then(m => m.PublicModule) },
-
-  {
-    path: 'private', loadChildren: () => import('./pages/private/private.module').then(m => m.PrivateModule),
-    canActivate: [AuthGuard],
-  },
-
-
+  { path: '', loadChildren: () => import('./features/features.module').then(m => m.FeaturesModule) }
 ];
 
 @NgModule({

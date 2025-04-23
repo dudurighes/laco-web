@@ -1,0 +1,25 @@
+<div fxLayout="column" fxFlex="100">
+  <div fxFlex="80">
+    <form fxLayout="column" [formGroup]="tipoDenunciaForm"
+          (submit)="tipoDenunciaForm.valid ? save() : null">
+
+      <div fxLayout="column">
+
+        <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+          <div fxLayout="row wrap" fxLayoutAlign="space-between center" fxFlex="100">
+            <app-input [icon]="'apartment'" [focus]="true" [label]="'Descrição do tipo'"
+                       [parentControl]="tipoDenunciaForm.get('descricao')" [required]="true" fxFlex="38">
+            </app-input>
+          </div>
+        </div>
+
+      </div>
+      <div class="panel-buttons">
+
+        <app-cancel-button (click)="cancel()"></app-cancel-button>
+        <app-confirm-button [submitted]="submitted"></app-confirm-button>
+
+      </div>
+    </form>
+  </div>
+</div>

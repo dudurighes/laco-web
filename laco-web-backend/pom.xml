@@ -5,14 +5,14 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.3.5</version>
+		<version>3.4.4</version>
 		<relativePath/>
 	</parent>
 	<groupId>br.com.lacoweb</groupId>
-	<artifactId>laco-w-api</artifactId>
+	<artifactId>laco-web-backend</artifactId>
 	<version>1.0</version>
-	<name>laco-w-api</name>
-	<description>laco-w-api</description>
+	<name>laco-web-backend</name>
+	<description>laco-web-backend</description>
 	<url/>
 	<licenses>
 		<license/>
