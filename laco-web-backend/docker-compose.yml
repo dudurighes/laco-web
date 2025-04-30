@@ -1,15 +1,31 @@
 services:
   postgres:
-    image: postgres:latest
-    container_name: postgres_container
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: laco-web-db
-    ports:
-      - "5432:5432"
+    image: postgres:16
+    env_file: ./env/postgres.env
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres-data:/var/lib/postgresql/data
+    restart: unless-stopped
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER" ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  app:
+    image: eduardorighes/laco-web-backend-app:latest
+    env_file: ./env/app.env
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  nginx:
+    image: eduardorighes/laco-web-frontend-app:latest
+    ports:
+      - "80:80"
+    restart: unless-stopped
+    depends_on:
+      - app
 
 volumes:
-  postgres_data:
+  postgres-data:
