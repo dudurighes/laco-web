@@ -1,0 +1,24 @@
+<div class="login-container">
+  <div class="login-form">
+    <h2 class="divider">Laço Web</h2>
+    <label class="divider">{{ title() }}</label>
+
+    <ng-content></ng-content>
+
+    <button class="container-btn" mat-flat-button>
+      {{ primaryBtnText() }}
+    </button>
+
+    <button class="container-btn" mat-raised-button>
+      {{ secondaryBtnText() }}
+    </button>
+
+  </div>
+
+  <div class="login-image">
+    <img alt="Skater"
+         height="500"
+         ngSrc="/assets/imagens/logo-marrom-sem-fundo.png"
+         width="500">
+  </div>
+</div>

@@ -1,0 +1,33 @@
+<app-default-login-layout
+  primaryBtnText="Entrar"
+  secondaryBtnText="Criar conta"
+  title="Acesse a sua conta"
+>
+
+  <form>
+    <div class="container-input">
+      <app-input-field
+        [model]="user.email"
+        icon="email"
+        label="Email"
+        name="email"
+        type="email">
+      </app-input-field>
+    </div>
+
+    <div class="container-input">
+      <app-input-field
+        [model]="user.password"
+        icon="lock"
+        label="Senha"
+        name="password"
+        type="password">
+      </app-input-field>
+    </div>
+
+    <div class="forgot-password">
+      <a href="#">Esqueceu sua senha?</a>
+    </div>
+  </form>
+
+</app-default-login-layout>

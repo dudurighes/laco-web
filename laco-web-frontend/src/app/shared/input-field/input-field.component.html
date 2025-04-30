@@ -1,0 +1,7 @@
+<mat-form-field appearance="outline" style="width: 100%;">
+  <mat-label>{{ label }}</mat-label>
+  <input [(ngModel)]="model" [name]="name" [type]="type" matInput required>
+  <button disabled mat-icon-button matSuffix>
+    <mat-icon color="primary">{{ icon }}</mat-icon>
+  </button>
+</mat-form-field>
