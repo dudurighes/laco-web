@@ -48,8 +48,6 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
     restart: unless-stopped
-    environment:
-      - GF_SERVER_ROOT_URL=%(protocol)s://%(domain)s/grafana/
 
 volumes:
   postgres-data:
