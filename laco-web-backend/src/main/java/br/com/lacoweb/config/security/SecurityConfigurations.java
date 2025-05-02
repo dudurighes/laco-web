@@ -28,6 +28,7 @@ public class SecurityConfigurations {
                         .authorizeHttpRequests(req -> {
                             req.requestMatchers("/login").permitAll();
                             req.requestMatchers("/usuario").permitAll();
+                            req.requestMatchers("/actuator/**").permitAll();
                             req.anyRequest().authenticated();
                         })
                         .build();
