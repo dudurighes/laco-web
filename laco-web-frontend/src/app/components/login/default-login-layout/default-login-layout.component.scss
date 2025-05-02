@@ -20,6 +20,37 @@
   justify-content: center;
 }
 
+/* Responsive styles for tablets */
+@media (max-width: 992px) {
+  .login-form {
+    width: 50vw;
+  }
+
+  .login-image {
+    width: 50vw;
+  }
+}
+
+/* Responsive styles for mobile devices */
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .login-form {
+    width: 100%;
+    order: 2;
+    padding: 20px;
+  }
+
+  .login-image {
+    width: 100%;
+    order: 1;
+    padding: 20px;
+  }
+}
+
 .container-btn {
   width: 100%;
   margin-bottom: 20px;
@@ -28,4 +59,16 @@
 .divider {
   text-align: center;
   margin: 20px 0;
+}
+
+.responsive-image {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .responsive-image {
+    max-width: 80%;
+    max-height: 200px;
+  }
 }
