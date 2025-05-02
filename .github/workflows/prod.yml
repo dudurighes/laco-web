@@ -1,0 +1,53 @@
+name: laco-web-main
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    env:
+      DOCKER_USER: ${{ secrets.DOCKERHUB_USERNAME }}
+      DOCKER_PASS: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ env.DOCKER_USER }}
+          password: ${{ env.DOCKER_PASS }}
+
+      - name: Build and push backend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./laco-web-backend
+          file: ./laco-web-backend/Dockerfile
+          push: true
+          tags: eduardorighes/laco-web-backend-app:latest
+
+      - name: Build and push frontend image
+        uses: docker/build-push-action@v5
+        with:
+          context: ./laco-web-frontend
+          file: ./laco-web-frontend/Dockerfile
+          push: true
+          tags: eduardorighes/laco-web-frontend-app:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: self-hosted
+    steps:
+      - name: Deploy containers via docker-compose
+        run: |
+          cd ..
+          docker-compose pull
+          docker-compose down --remove-orphans
+          docker-compose up -d
