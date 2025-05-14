@@ -1,4 +1,4 @@
-import {Component, input} from '@angular/core';
+import {Component, input, output} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -26,4 +26,7 @@ export class DefaultLoginLayoutComponent {
 
   secondaryBtnText = input.required<string>();
 
+  primaryClick = output<void>();
+
+  secondaryClick = output<void>();
 }

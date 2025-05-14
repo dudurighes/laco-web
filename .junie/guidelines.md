@@ -1,6 +1,8 @@
 # Junie Guidelines for Fullstack Development
 
-Este documento contém as diretrizes para o desenvolvimento dos projetos `laco-web-backend` (Spring Boot) e `laco-web-frontend` (Angular). O objetivo é garantir consistência, manutenibilidade e o uso das melhores práticas com as versões mais recentes.
+Este documento contém as diretrizes para o desenvolvimento dos projetos `laco-web-backend` (Spring Boot) e
+`laco-web-frontend` (Angular). O objetivo é garantir consistência, manutenibilidade e o uso das melhores práticas com as
+versões mais recentes.
 
 ---
 
@@ -11,6 +13,8 @@ Este documento contém as diretrizes para o desenvolvimento dos projetos `laco-w
     - `laco-web-frontend` → Angular
 
 * Sempre utilizar a versão mais recente estável de cada tecnologia.
+
+* Nunca utilize comentário nos códigos.
 
 ---
 

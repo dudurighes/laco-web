@@ -5,11 +5,11 @@
 
     <ng-content></ng-content>
 
-    <button class="container-btn" mat-flat-button>
+    <button class="container-btn" mat-flat-button (click)="primaryClick.emit()">
       {{ primaryBtnText() }}
     </button>
 
-    <button class="container-btn" mat-raised-button>
+    <button class="container-btn" mat-raised-button (click)="secondaryClick.emit()">
       {{ secondaryBtnText() }}
     </button>
 

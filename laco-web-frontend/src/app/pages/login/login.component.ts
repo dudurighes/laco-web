@@ -4,6 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {InputFieldComponent} from '../../shared/input-field/input-field.component';
 import {MatButton} from '@angular/material/button';
 import {UserLogin} from '../../components/login/default-login-layout/user-login';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,4 +26,14 @@ export class LoginComponent {
     password: ""
   }
 
+  constructor(private router: Router) {}
+
+  onLogin(): void {
+    // Login logic would go here
+    console.log('Login attempt with:', this.user);
+  }
+
+  onRegister(): void {
+    this.router.navigate(['/register']);
+  }
 }

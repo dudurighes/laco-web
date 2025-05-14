@@ -1,0 +1,41 @@
+<app-default-login-layout
+  primaryBtnText="Criar conta"
+  secondaryBtnText="Voltar para login"
+  title="Crie sua conta"
+  (primaryClick)="onRegister()"
+  (secondaryClick)="onBackToLogin()"
+>
+
+  <form>
+    <div class="container-input">
+      <app-input-field
+        [model]="user.nome"
+        icon="person"
+        label="Nome"
+        name="nome"
+        type="text">
+      </app-input-field>
+    </div>
+
+    <div class="container-input">
+      <app-input-field
+        [model]="user.login"
+        icon="email"
+        label="Email"
+        name="login"
+        type="email">
+      </app-input-field>
+    </div>
+
+    <div class="container-input">
+      <app-input-field
+        [model]="user.senha"
+        icon="lock"
+        label="Senha"
+        name="senha"
+        type="password">
+      </app-input-field>
+    </div>
+  </form>
+
+</app-default-login-layout>
